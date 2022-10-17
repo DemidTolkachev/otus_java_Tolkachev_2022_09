@@ -1,4 +1,4 @@
-package org.example;
+package ru.otus;
 
 import static com.google.common.base.Objects.equal;
 
