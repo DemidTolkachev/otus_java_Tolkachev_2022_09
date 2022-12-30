@@ -20,9 +20,22 @@ public class TestClass {
         return instance;
     }
 
-    public List<Result> invokeMethods(Class<? extends Annotation> annotation) {
-        final Method[] methods = clazz.getDeclaredMethods();
+    public List<Result> invokeMethods(Class<? extends Annotation> annotation, Method[] methods) {
         return Arrays.stream(methods).filter(method -> method.isAnnotationPresent(annotation)).map(method -> {
+            try {
+                method.invoke(instance());
+                return new Result(Result.Type.SUCCESS, method.getName());
+            } catch (InvocationTargetException ex) {
+                return new Result(Result.Type.ERROR,
+                        String.format("%s, error: %s", method.getName(), ex.getTargetException().getMessage()));
+            } catch (Exception ex) {
+                return new Result(Result.Type.ERROR, ex.getMessage());
+            }
+        }).collect(Collectors.toList());
+    }
+
+    public List<Result> invokeMethod(Method[] methods) {
+        return Arrays.stream(methods).map(method -> {
             try {
                 method.invoke(instance());
                 return new Result(Result.Type.SUCCESS, method.getName());
