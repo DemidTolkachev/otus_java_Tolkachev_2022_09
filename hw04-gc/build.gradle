@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.calculator'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
