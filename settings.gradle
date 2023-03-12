@@ -7,4 +7,8 @@ include 'hw05-byteCodes'
 include 'hw06-solid'
 include 'hw07-structuralPatterns'
 include 'hw08-io'
+include 'hw09-jdbc:demo'
+findProject(':hw09-jdbc:demo')?.name = 'demo'
+include 'hw09-jdbc:hw09-jdbc-homework'
+findProject(':hw09-jdbc:hw09-jdbc-homework')?.name = 'hw09-jdbc-homework'
 
