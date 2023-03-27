@@ -16,4 +16,5 @@ include 'hw11-cache:demo'
 findProject(':hw11-cache:demo')?.name = 'demo'
 include 'hw11-cache:hw09-jdbc-homework'
 findProject(':hw11-cache:hw09-jdbc-homework')?.name = 'hw09-jdbc-homework'
+include 'hw12-webServer'
 
