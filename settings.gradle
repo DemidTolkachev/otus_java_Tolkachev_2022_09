@@ -18,4 +18,5 @@ include 'hw11-cache:hw09-jdbc-homework'
 findProject(':hw11-cache:hw09-jdbc-homework')?.name = 'hw09-jdbc-homework'
 include 'hw12-webServer'
 include 'hw13-di'
+include 'hw14-springDataJdbc'
 

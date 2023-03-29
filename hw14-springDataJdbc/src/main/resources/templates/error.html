@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ошибка</title>
+    <style type="text/css">
+        body {
+            padding: 10px;
+        }
+		h3 {
+            background-image: url("../static/badge.png");
+			background-repeat: no-repeat;
+            padding: 2px;
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<h3>Ошибка!</h3>
+<pre th:text="${error}"></pre>
+<a th:href="@{/}">На главную</a>
+
+</body>
+</html>

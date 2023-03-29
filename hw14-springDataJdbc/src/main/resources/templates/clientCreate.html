@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Создать клиента</title>
+    <style type="text/css">
+        body {
+            padding: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 200px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+
+    <script>
+        function saveClient() {
+            const clientDataContainer = document.getElementById('clientDataContainer');
+            const clientNameInput = document.getElementById("clientName");
+            const clientName = clientNameInput.value;
+
+            const clientStreetInput = document.getElementById("clientStreet");
+            const clientStreet = clientStreetInput.value;
+
+            const clientPhonesInput = document.getElementById("clientPhones");
+            const clientPhones = clientPhonesInput.value;
+
+            fetch('/api/client', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({name: clientName, street: clientStreet, phones: clientPhones.split(",")})
+             })
+                .then(response => response.json())
+                .then(client => clientDataContainer.innerHTML = 'Клиент создан: ' + JSON.stringify(client));
+        }
+    </script>
+</head>
+<body>
+
+<form id="create-form" th:action="@{/client/save}" th:object="${client}" th:method="post" accept-charset="utf-8">
+    <h1>Новый клиент:</h1>
+
+    <div class="row">
+        <label for="clientName">ФИО:</label>
+        <input id="clientName" name="name" type="text" th:value="*{name}" />
+    </div>
+
+    <div class="row">
+        <label for="clientStreet">Адрес:</label>
+        <input id="clientStreet" name="street" type="text" th:value="*{street}"/>
+    </div>
+
+    <div class="row">
+        <label for="clientPhones">Телефоны, разделённые "," :</label>
+        <input id="clientPhones" name="phones" type="text" th:value="*{phones}"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">Сохранить с помощью form</button>
+        <button type="button" onclick="saveClient()">Сохранить с помощью REST</button>
+    </div>
+</form>
+<pre id = "clientDataContainer"></pre>
+
+</body>
+</html>
