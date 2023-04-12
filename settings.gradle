@@ -22,4 +22,8 @@ include 'hw14-springDataJdbc'
 include 'hw15-executors'
 include 'hw16-concurrentCollections'
 include 'hw17-multiprocess'
+include 'hw18-webflux-chat:client-service'
+findProject(':hw18-webflux-chat:client-service')?.name = 'client-service'
+include 'hw18-webflux-chat:datastore-service'
+findProject(':hw18-webflux-chat:datastore-service')?.name = 'datastore-service'
 
